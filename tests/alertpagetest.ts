@@ -36,6 +36,7 @@ it("acceptalert", async()=>{
 it("confirmacceptalert", async()=>{    
     let alerttext = await alertpagev.confirmacceptalert();
     expect(alerttext).toBe("Are you happy with LetCode")
+    //just comment
 })
 
 it("promptalert", async()=>{    
