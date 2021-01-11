@@ -14,6 +14,10 @@ export class header extends commonfunctions{
          // await  expect(await this.signoutBtn.isDisplayed()).toBe(true); 
            await  this.assertText(this.signoutBtn, "Sign out");
       } 
+
+      async clicksignout(){
+          await this.click(this.signoutBtn);
+      }
     
 
     } 

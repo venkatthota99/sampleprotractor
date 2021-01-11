@@ -2,16 +2,25 @@ let SpecReporter = require('jasmine-spec-reporter').SpecReporter;
 exports.config = {
     framework:"jasmine", 
     directConnect :true, 
-    specs: ['tests/loginpagetestspec.ts'], 
+    specs: ['tests/selectauipagetest.ts'], 
     SELENIUM_PROMISE_MANAGER: false,
     jasmineNodeOpts:{
-           defaultTimeoutInterval: 60000
+           defaultTimeoutInterval: 20000
     }, 
     capabilities:{ 
         "browserName":"chrome", 
-        shardTestFiles:true,   // If this is set to true  files to be run by this set of capabiities will run parallel
-        maxInstances:1    // Default to 1 and this is needed only if sharedtest files is set to true 
+        shardTestFiles: true,   // If this is set to true  files to be run by this set of capabiities will run parallel
+        maxInstances: 1,    // Default to 1 and this is needed only if sharedtest files is set to true 
+        }, 
+
+   /* multiCapabilities:[
+        {
+            "browserName":"chrome"
         },
+        {
+            "browserName":"firefox"
+        }
+    ],*/
     onPrepare() {
         require("ts-node").register({
             project: require("path").join(__dirname,"./tsconfig.json"),

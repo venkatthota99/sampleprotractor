@@ -1,6 +1,7 @@
 import { platform } from "os";
-import { browser, ElementFinder, promise, ProtractorExpectedConditions } from "protractor";
+import { browser, by, ElementFinder, promise, ProtractorExpectedConditions } from "protractor";
 import { protractor } from "protractor/built/ptor";
+import { select } from "../../pages/selectpage";
 
 export class ProtractorBase {
 
@@ -84,7 +85,7 @@ export class ProtractorBase {
 
     public async typeAndTab(element:ElementFinder, testdata:string){
         await browser.wait(this.ec.visibilityOf(element),this.timeOut, "element not visible");
-        await element.clear();
+       // await element.clear();
         await element.sendKeys(testdata, protractor.Key.TAB);
         }
     public async typeAndEnter(element:ElementFinder, testdata:string){
@@ -111,5 +112,30 @@ export class ProtractorBase {
             await browser.wait(this.ec.visibilityOf(element),this.timeOut, "element not visible");
             await browser.actions().mouseMove(await element.getWebElement())
             .perform();
+        }
+       
+    public async clear(element:ElementFinder){
+            await browser.wait(this.ec.visibilityOf(element),this.timeOut, "element not visible");
+            await element.clear();
+            }
+
+    public async isenabled(element:ElementFinder){
+                await browser.wait(this.ec.visibilityOf(element),this.timeOut, "element not visible");
+                await element.isEnabled();
+                }
+
+    public async selectdropdownbyvisibletext(dropdownelement:ElementFinder, visibletext:string){
+        await browser.wait(this.ec.visibilityOf(dropdownelement),this.timeOut, "element not visible");
+        await dropdownelement.click();
+        await dropdownelement.element(by.xpath("//option[text()='"+visibletext+"']")).click();
+        }
+    public async selectdropdownbyvalue(dropdownelement:ElementFinder, valuetext:string){
+        await browser.wait(this.ec.visibilityOf(dropdownelement),this.timeOut, "element not visible");
+        await dropdownelement.click();
+        await dropdownelement.element(by.xpath("//*[@value='"+valuetext+"']")).click();
+            }
+    public async selectdropdown(dropdownelement:ElementFinder){
+        await browser.wait(this.ec.visibilityOf(dropdownelement),this.timeOut, "element not visible");
+        await dropdownelement.click();
         }
 }
