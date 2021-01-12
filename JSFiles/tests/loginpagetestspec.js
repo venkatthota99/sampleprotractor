@@ -8,10 +8,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const protractor_1 = require("protractor");
 const headerpage_1 = require("../pages/headerpage");
 const loginpage_1 = require("../pages/loginpage");
+const userinfo_json_1 = __importDefault(require("../testdata/userinfo.json"));
 const loginv = new loginpage_1.login();
 const headerv = new headerpage_1.header();
 describe("loginpage testsuite ", () => {
@@ -24,8 +28,8 @@ describe("loginpage testsuite ", () => {
     }));
     it("login with correct credentials", () => __awaiter(void 0, void 0, void 0, function* () {
         yield headerv.clickLogInBtn();
-        yield loginv.enterEmail("vthota.ca@gmail.com");
-        yield loginv.enterPassword("Hanuman221");
+        yield loginv.enterEmail(userinfo_json_1.default.signup.email);
+        yield loginv.enterPassword(userinfo_json_1.default.signup.password);
         yield loginv.submitLoginBtn();
         yield headerv.signoutTxtdisplayed();
     }));
