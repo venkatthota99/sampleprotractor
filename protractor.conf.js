@@ -2,7 +2,7 @@ let SpecReporter = require('jasmine-spec-reporter').SpecReporter;
 exports.config = {
     framework:"jasmine", 
     directConnect :true, 
-    specs: ['tests/selectauipagetest.ts'], 
+    specs: ['tests/loginpagetestspec.ts'], 
     SELENIUM_PROMISE_MANAGER: false,
     jasmineNodeOpts:{
            defaultTimeoutInterval: 20000
