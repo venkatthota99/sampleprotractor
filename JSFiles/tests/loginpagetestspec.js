@@ -28,9 +28,24 @@ describe("loginpage testsuite ", () => {
     }));
     it("login with correct credentials", () => __awaiter(void 0, void 0, void 0, function* () {
         yield headerv.clickLogInBtn();
-        yield loginv.enterEmail(userinfo_json_1.default.signup.email);
-        yield loginv.enterPassword(userinfo_json_1.default.signup.password);
-        yield loginv.submitLoginBtn();
+        yield allure.createStep("enter email", () => __awaiter(void 0, void 0, void 0, function* () {
+            yield loginv.enterEmail(userinfo_json_1.default.signup.email);
+            yield attachscreenshot("enter email");
+        }))();
+        yield allure.createStep("enter password", () => __awaiter(void 0, void 0, void 0, function* () {
+            yield loginv.enterPassword(userinfo_json_1.default.signup.password);
+            yield attachscreenshot('enter password');
+        }))();
+        yield allure.createStep("submit login", () => __awaiter(void 0, void 0, void 0, function* () {
+            yield loginv.submitLoginBtn();
+            yield attachscreenshot('submit login');
+        }))();
         yield headerv.signoutTxtdisplayed();
     }));
 });
+function attachscreenshot(filename) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let png = yield protractor_1.browser.takeScreenshot();
+        yield allure.createAttachment(filename, new Buffer(png, 'base64'));
+    });
+}

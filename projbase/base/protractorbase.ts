@@ -7,6 +7,8 @@ export class ProtractorBase {
 
     private ec :ProtractorExpectedConditions = browser.ExpectedConditions;
     private timeOut = 30000;
+    
+    
 
     /**
      * @description : This function is used to do click action
@@ -138,4 +140,8 @@ export class ProtractorBase {
         await browser.wait(this.ec.visibilityOf(dropdownelement),this.timeOut, "element not visible");
         await dropdownelement.click();
         }
+
+      
+
+     
 }
